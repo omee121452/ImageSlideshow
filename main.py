@@ -49,7 +49,7 @@ class Slideshow:
             pass
 
 
-# Create the Slideshow object
+# Create the Slideshow object 1
 slideshow = Slideshow()
 #commitandpush
 # Run the slideshow
