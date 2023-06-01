@@ -22,20 +22,24 @@ class Slideshow:
     def add_images(self):
         for imagePath in os.listdir('images'):
             print(imagePath)
-            TempNode = Node(imagePath)
+            TempNode = Node(os.path.join('images', imagePath))
             if not self.head: #this is the same as saying if self.head == None
                 self.head=TempNode
                 self.current_node = TempNode
             else:
                 self.current_node.next = TempNode
                 self.current_node = TempNode
-        self.current_node = self.head
+        self.current_node = self.head #reseting the current node to be the head so when we use the nodes later it is in order and starts from the head.
 
 
 
 
     def display_image(self):
-        pass
+        if self.current_node:
+            Image = pygame.image.load(self.current_node.image_path)
+            scaledImage = pygame.transform.scale(Image,(self.width,self.height))
+            self.screen.blit(scaledImage,(0,0))
+            pygame.display.flip()
 
     def next_image(self):
         pass
@@ -46,7 +50,10 @@ class Slideshow:
     def run(self):
         running = True
         while running == True:
-            pass
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+            self.clock.tick(30)
 
 
 # Create the Slideshow object 1
